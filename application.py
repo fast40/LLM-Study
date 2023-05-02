@@ -20,9 +20,11 @@ token = client.generate_db_auth_token(DBHostname=RDS_HOSTNAME, Port=RDS_PORT, DB
 print('-----------------------------------------------')
 print(token)
 try:
+	print('\n\n\n--------ATTEMPTING TO CONNECT------------------')
 	connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=token, port=RDS_PORT, database=RDS_DB_NAME, ssl_ca='SSLCERTIFICATE')
 except Exception as e:
 	print(e)
+	print('\n\n\nEND ERROR ________________ \n\n\n')
 
 @application.route('/')
 def index():
