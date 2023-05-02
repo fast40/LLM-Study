@@ -12,7 +12,7 @@ RDS_DB_NAME = os.environ.get('RDS_DB_NAME')
 RDS_USERNAME = os.environ.get('RDS_USERNAME')
 RDS_PASSWORD = os.environ.get('RDS_PASSWORD')
 
-session = boto3.Session(profile_name='default')
+session = boto3.Session()
 client = session.client('rds')
 
 token = client.generate_db_auth_token(DBHostname=RDS_HOSTNAME, Port=RDS_PORT, DBUsername=RDS_USERNAME, Region='us-west-1')
