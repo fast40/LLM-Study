@@ -7,7 +7,7 @@ application = Flask(__name__)
 @application.route('/')
 def index():
 	if 'quantity' in request.args:
-		return os.environ('RDS_HOSTNAME')
+		return os.environ.get('RDS_HOSTNAME')
 	else:
 		return 'LLM-Survey V1.0'
 		
