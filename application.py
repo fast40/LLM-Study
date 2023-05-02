@@ -14,7 +14,7 @@ RDS_PASSWORD = os.environ.get('RDS_PASSWORD')
 
 print('-----------------------------------------------')
 session = boto3.Session()
-client = session.client('rds')
+client = session.client(service_name='rds', region='us-west-1')
 
 token = client.generate_db_auth_token(DBHostname=RDS_HOSTNAME, Port=RDS_PORT, DBUsername=RDS_USERNAME, Region='us-west-1')
 print('-----------------------------------------------')
