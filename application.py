@@ -12,10 +12,12 @@ RDS_DB_NAME = os.environ.get('RDS_DB_NAME')
 RDS_USERNAME = os.environ.get('RDS_USERNAME')
 RDS_PASSWORD = os.environ.get('RDS_PASSWORD')
 
+print('-----------------------------------------------')
 session = boto3.Session()
 client = session.client('rds')
 
 token = client.generate_db_auth_token(DBHostname=RDS_HOSTNAME, Port=RDS_PORT, DBUsername=RDS_USERNAME, Region='us-west-1')
+print('-----------------------------------------------')
 print(token)
 try:
 	connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=token, port=RDS_PORT, database=RDS_DB_NAME, ssl_ca='SSLCERTIFICATE')
