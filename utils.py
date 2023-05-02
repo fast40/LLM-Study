@@ -1,6 +1,6 @@
 SOURCES = ('source1', 'source2', 'source3')
 
-def get_questions(connection, cursor, quantity):
+def get_questions(connection, quantity):
 	questions = {}
 
 	for source in SOURCES:
