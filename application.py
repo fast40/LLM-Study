@@ -12,19 +12,13 @@ RDS_DB_NAME = os.environ.get('RDS_DB_NAME')
 RDS_USERNAME = os.environ.get('RDS_USERNAME')
 RDS_PASSWORD = os.environ.get('RDS_PASSWORD')
 
-print('-----------------------------------------------')
 session = boto3.Session()
 client = session.client(service_name='rds', region_name='us-west-1')
 
 token = client.generate_db_auth_token(DBHostname=RDS_HOSTNAME, Port=RDS_PORT, DBUsername=RDS_USERNAME, Region='us-west-1')
-print('-----------------------------------------------')
-print(token)
-try:
-	print('\n\n\n--------ATTEMPTING TO CONNECT------------------')
-	connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=token, port=RDS_PORT, database=RDS_DB_NAME, ssl_ca='SSLCERTIFICATE')
-except Exception as e:
-	print(e)
-	print('\n\n\nEND ERROR ________________ \n\n\n')
+print('CONNECTING_________________________________________________')
+connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=token, port=RDS_PORT, database=RDS_DB_NAME, ssl_ca='SSLCERTIFICATE')
+print('DONE CONNECTION-----------------------------------------------')
 
 @application.route('/')
 def index():
