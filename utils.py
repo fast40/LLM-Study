@@ -1,8 +1,8 @@
+COLUMNS = ('id', 'qcat', 'qid', 'model', 'ResponseId', 'question', 'response', 'oversample', 'views')
+
 def get_row(connection, model):
 	with connection.cursor() as cursor:
-		query = f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 LIMIT 1'
-		print('HAHAHAHAHAH__________________________', query)
-		cursor.execute(query)
+		cursor.execute(f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 LIMIT 1')
 
 	row = cursor.fetchone()
 
@@ -14,4 +14,4 @@ def get_row(connection, model):
 	except IndexError:
 		pass
 
-	return row
+	return dict(zip(COLUMNS, row))
