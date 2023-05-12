@@ -1,6 +1,8 @@
 def get_row(connection, model):
 	with connection.cursor() as cursor:
-		cursor.execute(f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 LIMIT 1')
+		query = f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 LIMIT 1'
+		print('HAHAHAHAHAH__________________________', query)
+		cursor.execute(query)
 
 	row = cursor.fetchone()
 
