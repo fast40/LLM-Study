@@ -21,7 +21,7 @@ def index():
 	if 'quantity' in request.args:
 		return get_questions(connection, request.args['quantity'])
 	else:
-		return 'LLM-Survey V1.0'
+		return {'LLM-Survey V1.0': [RDS_HOSTNAME, RDS_USERNAME, RDS_PASSWORD, RDS_PORT, RDS_DB_NAME]}
 		
 
 @application.route('/robots.txt')
