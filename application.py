@@ -1,5 +1,5 @@
 from flask import Flask, request, send_file
-from utils import get_questions
+from utils import get_row
 import pymysql
 import boto3
 import os
@@ -18,10 +18,10 @@ connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=RDS_P
 
 @application.route('/')
 def index():
-	if 'quantity' in request.args:
-		return get_questions(connection, request.args['quantity'])
+	if 'model' in request.args:
+		return get_row(connection, request.args['model'])
 	else:
-		return {'LLM-Survey V1.0': [RDS_HOSTNAME, RDS_USERNAME, RDS_PASSWORD, RDS_PORT, RDS_DB_NAME]}
+		return 'LLM-Survey V1.0'
 		
 
 @application.route('/robots.txt')
