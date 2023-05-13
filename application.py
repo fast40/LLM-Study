@@ -20,11 +20,11 @@ connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=RDS_P
 def index():
 	if 'model' in request.args:
 		row = get_row(connection, request.args['model'])
-		return jsonify(row)
-		# response = Response(jsonify(row))
-		# response.headers['Access-Control-Allow-Origin'] = '*'
+		
+		response = jsonify(row)
+		response.headers['Access-Control-Allow-Origin'] = '*'
 
-		# return response
+		return response
 	else:
 		return 'LLM-Survey V1.0'
 		
