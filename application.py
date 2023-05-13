@@ -1,4 +1,4 @@
-from flask import Flask, Response, request, send_file
+from flask import Flask, Response, request, send_file, jsonify
 from utils import get_row
 import pymysql
 import boto3
@@ -19,7 +19,7 @@ connection =  pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=RDS_P
 @application.route('/')
 def index():
 	if 'model' in request.args:
-		response = Response(get_row(connection, request.args['model']))
+		response = Response(jsonify(get_row(connection, request.args['model'])))
 		response.headers['Access-Control-Allow-Origin'] = '*'
 
 		return response
