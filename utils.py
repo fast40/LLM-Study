@@ -2,7 +2,7 @@ COLUMNS = ('id', 'qcat', 'qid', 'model', 'ResponseId', 'question', 'response', '
 
 def get_row(connection, model):
 	with connection.cursor() as cursor:
-		cursor.execute(f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 LIMIT 1')
+		cursor.execute(f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 ORDER BY RAND() LIMIT 1')
 
 	row = cursor.fetchone()
 
