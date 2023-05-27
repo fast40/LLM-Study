@@ -1,0 +1,1 @@
+print(dict(zip(['field1', 'field2'], [1])))
