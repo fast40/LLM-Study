@@ -1,4 +1,4 @@
-import MySQLdb
+import pymysql
 import os
 
 RDS_HOSTNAME = os.environ.get('RDS_HOSTNAME')
@@ -10,7 +10,7 @@ RDS_PASSWORD = os.environ.get('RDS_PASSWORD')
 COLUMNS = ('id', 'qcat', 'qid', 'model', 'ResponseId', 'question', 'response', 'oversample', 'views')
 
 def get_row(model):
-	with MySQLdb.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=RDS_PASSWORD, port=RDS_PORT, database=RDS_DB_NAME, ssl_ca='us-west-1-bundle.pem', autocommit=True) as connection, connection.cursor() as cursor:
+	with pymysql.connect(host=RDS_HOSTNAME, user=RDS_USERNAME, passwd=RDS_PASSWORD, port=RDS_PORT, database=RDS_DB_NAME, ssl_ca='us-west-1-bundle.pem', autocommit=True) as connection, connection.cursor() as cursor:
 		cursor.execute(f'SELECT * FROM data WHERE model = \'{model}\' AND views < 1 ORDER BY RAND() LIMIT 1')
 		row = cursor.fetchone()
 
