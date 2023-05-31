@@ -16,5 +16,7 @@ def get_row(model):
 
 		if row:
 			cursor.execute(f'UPDATE data SET views = views + 1 WHERE id = {row[0]}')
+		else:
+			row = []
 
 		return dict(zip(COLUMNS, row))  # returns empty dict if row is empty list
